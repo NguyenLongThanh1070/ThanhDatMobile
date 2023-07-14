@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model carts {
+  cartID   Int       @id @default(autoincrement())
+  id       Int?
+  images   String?   @db.VarChar(100)
+  name     String?   @db.VarChar(50)
+  price    String?   @db.VarChar(50)
+  quantity Int?
+  username String?   @db.VarChar(50)
+  paid     String    @db.VarChar(50)
+  products products? @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "carts_ibfk_2")
+
+  @@index([id], map: "id")
+}
+
+model products {
+  id         Int     @id @default(autoincrement())
+  images     String  @db.VarChar(100)
+  name       String  @db.VarChar(50)
+  price      String  @db.VarChar(50)
+  resolution String  @db.VarChar(50)
+  os         String  @db.VarChar(50)
+  frontcam   String  @db.VarChar(50)
+  backcam    String  @db.VarChar(50)
+  ram        String  @db.VarChar(50)
+  rom        String  @db.VarChar(50)
+  pin        String  @db.VarChar(50)
+  quantity   Int
+  carts      carts[]
+
+  @@index([id], map: "id")
+}
+
+model users {
+  userid    Int    @id @default(autoincrement())
+  name      String @db.VarChar(50)
+  email     String @db.VarChar(50)
+  user_name String @db.VarChar(50)
+  password  String @db.VarChar(50)
+}
+
+model feedback {
+  fbID    Int     @id @default(autoincrement())
+  name    String? @db.VarChar(50)
+  email   String? @db.VarChar(50)
+  phone   String? @db.VarChar(10)
+  message String? @db.VarChar(1000)
+
+  @@index([fbID], map: "fbID")
+}
+
+model bill {
+  billID      Int           @id @default(autoincrement())
+  price       String?       @db.VarChar(50)
+  address     String?       @db.VarChar(50)
+  phone       String?       @db.VarChar(50)
+  username    String?       @db.VarChar(50)
+  paid        String        @db.VarChar(50)
+  billDetails billDetails[]
+}
+
+model billDetails {
+  billDetailsID Int     @id @default(autoincrement())
+  billID        Int?
+  productName   String? @db.VarChar(50)
+  quantity      Int?
+  price         String? @db.VarChar(50)
+  bill          bill?   @relation(fields: [billID], references: [billID], onDelete: NoAction, onUpdate: NoAction, map: "billDetails_ibfk_1")
+
+  @@index([billID], map: "billID")
+}

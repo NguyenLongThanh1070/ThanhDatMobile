@@ -1,0 +1,30 @@
+{
+    "name": "nodejs",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon src/server.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "prisma": {
+        "schema": "./src/models/prisma/schema.prisma"
+    },
+    "dependencies": {
+        "@prisma/client": "^4.16.2",
+        "body-parser": "^1.20.1",
+        "cookie-parser": "^1.4.6",
+        "dotenv": "^16.0.3",
+        "ejs": "3.1.8",
+        "express": "4.18.1",
+        "express-session": "^1.17.3",
+        "jsonwebtoken": "^9.0.0",
+        "mysql2": "^2.3.3",
+        "nodemailer": "^6.9.3",
+        "nodemon": "^1.14.9",
+        "prisma": "^4.16.2",
+        "redis": "^4.6.7"
+    }
+}

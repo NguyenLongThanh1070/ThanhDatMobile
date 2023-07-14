@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- basic -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- mobile metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+        <!-- site metas -->
+        <title>Sản phẩm</title>
+        <meta name="keywords" content="Mobile Shop" />
+        <meta name="description" content="Demo" />
+        <meta name="author" content="Thanh" />
+        <!-- bootstrap css -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <!-- style css -->
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- Responsive-->
+        <link rel="stylesheet" href="css/responsive.css" />
+        <!-- fevicon -->
+        <link rel="shortcut icon" href="icon/favicon.ico" type="image/x-icon" />
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
+        <!-- Tweaks for older IEs-->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+            integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm"
+            crossorigin="anonymous" />
+        <!-- owl stylesheets -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="css/owl.carousel.min.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+            media="screen" />
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script
+        ><![endif]-->
+    </head>
+    <!-- body -->
+    <body class="main-layout">
+        <!-- loader  -->
+        <div class="loader_bg">
+            <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+        </div>
+        <!-- end loader -->
+        <!-- header-->
+        <header>
+            <!-- header inner -->
+            <div class="header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                            <div class="full">
+                                <div class="center-desk">
+                                    <div class="logo">
+                                        <a href="/"><img src="images/logo.png" alt="#" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                            <div class="menu-area">
+                                <div class="limit-box">
+                                    <nav class="main-menu">
+                                        <ul class="menu-area-main">
+                                            <li class="active">
+                                                <a href="/">Trang chủ</a>
+                                            </li>
+                                            <li>
+                                                <a href="/danhmucsanpham">Sản phẩm</a>
+                                            </li>
+                                            <li>
+                                                <a href="/lienhe">Liên hệ</a>
+                                            </li>
+                                            <% if(username){ %>
+                                            <li>
+                                                <a href="/dangxuat"><%=username %>,Đăng xuất</a>
+                                            </li>
+                                            <li>
+                                                <a href="/giohang"><i class="fa-solid fa-cart-shopping"></i></a>
+                                            </li>
+                                            <% } else { %>
+                                            <li>
+                                                <a href="/dangky">Đăng ký</a>
+                                            </li>
+                                            <li>
+                                                <a href="/dangnhap"><i class="fa-solid fa-cart-shopping"></i></a>
+                                            </li>
+                                            <% } %>
+                                            <li class="last">
+                                                <form action="/timkiem" method="get">
+                                                    <div class="input-group rounded">
+                                                        <input
+                                                            type="search"
+                                                            class="form-control rounded"
+                                                            placeholder="Search"
+                                                            aria-label="Search"
+                                                            aria-describedby="search-addon"
+                                                            name="search" />
+                                                        <button type="submit" class="btn btn-primary">
+                                                            <i class="fas fa-search"></i>
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-md-6">
+                            <div class="location_icon_bottum">
+                                <ul>
+                                    <li><img src="icon/call.png" />037869xxxx</li>
+                                    <li><img src="icon/email.png" />nguyenlongthanhIT@gmail.com</li>
+                                    <li><img src="icon/loc.png" />Ha Noi</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end header inner -->
+        </header>
+        <!-- end header -->
+        <% if(status != ""){ %>
+        <div class="alert alert-success" role="alert"><%= status %></div>
+        <% } %>
+        <!-- brand -->
+        <div class="brand">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="titlepage">
+                            <h2>Brand của chúng tôi</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-bg">
+                <div class="container">
+                    <div class="row">
+                        <% for(let i = 0; i < products.length; i++){ %>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
+                            <div class="brand_box">
+                                <a href="/trangsanphamchitiet/<%=products[i].id %>">
+                                    <img src="<%=products[i].images %>" alt="ảnh lỗi" />
+                                    <h3>
+                                        <strong class="red"><%=products[i].price%></strong>
+                                    </h3>
+                                    <span><%=products[i].name%></span>
+                                    <i><img src="images/star.png" /></i>
+                                    <i><img src="images/star.png" /></i>
+                                    <i><img src="images/star.png" /></i>
+                                    <i><img src="images/star.png" /></i>
+                                    <i><img src="images/star.png" /></i>
+                                </a>
+                            </div>
+                        </div>
+                        <% } %>
+                        <div class="col-md-12">
+                            <a class="read-more" href="/danhmucsanpham">See More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end brand -->
+        <!-- footer -->
+        <footer>
+            <div id="contact" class="footer">
+                <div class="container">
+                    <div class="row pdn-top-30">
+                        <div class="col-md-12">
+                            <div class="footer-box">
+                                <div class="headinga">
+                                    <h3>Địa chỉ</h3>
+                                    <span>Hà Nội, Việt Nam</span>
+                                    <p>
+                                        037869xxxx
+                                        <br />nguyenlongthanhIT@gmail.com
+                                    </p>
+                                </div>
+                                <ul class="location_icon">
+                                    <li>
+                                        <a href="https://www.facebook.com" target="_blank"
+                                            ><i class="fa fa-facebook-f"></i
+                                        ></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.twitter.com" target="_blank"
+                                            ><i class="fa fa-twitter"></i
+                                        ></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.instagram.com" target="_blank"
+                                            ><i class="fa fa-instagram"></i
+                                        ></a>
+                                    </li>
+                                </ul>
+                                <div class="menu-bottom">
+                                    <ul class="link">
+                                        <li><a href="#">Trang chủ</a></li>
+                                        <li>
+                                            <a href="/gioithieu" target="_blank">Giới thiệu</a>
+                                        </li>
+                                        <li>
+                                            <a href="/danhmucsanpham" target="_blank">Sản phẩm</a>
+                                        </li>
+                                        <li>
+                                            <a href="/lienhe" target="_blank">Liên hệ</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
+        <!-- Javascript files-->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery-3.0.0.min.js"></script>
+        <script src="js/plugin.js"></script>
+        <!-- sidebar -->
+        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="js/custom.js"></script>
+        <!-- Font awesome-->
+        <script src="https://kit.fontawesome.com/8627de222b.js" crossorigin="anonymous"></script>
+        <!-- javascript -->
+        <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $(".fancybox").fancybox({
+                    openEffect: "none",
+                    closeEffect: "none",
+                });
+
+                $(".zoom").hover(
+                    function () {
+                        $(this).addClass("transition");
+                    },
+                    function () {
+                        $(this).removeClass("transition");
+                    }
+                );
+            });
+            const nodeList = document.querySelectorAll(".red");
+            for (let i = 0; i < nodeList.length; i++) {
+                nodeList[i].innerHTML = numberWithCommas(nodeList[i].innerHTML);
+            }
+
+            function numberWithCommas(x) {
+                return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            }
+        </script>
+    </body>
+    <!-- end body -->
+</html>
